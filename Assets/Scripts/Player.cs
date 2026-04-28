@@ -24,9 +24,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject GameOverScreen;
 
+    [SerializeField]
+    private Projectile ProjectilePrefab;
+
     void OnMove(InputValue value)
     {
         _movement = value.Get<Vector2>();
+    }
+    private void OnAttack(InputValue value)
+    {
+        Projectile o = Instantiate(ProjectilePrefab);
+        o.transform.localPosition = new Vector3(transform.position.x,
+                                                transform.position.y,
+                                                transform.position.z + 3);
     }
 
     private void FixedUpdate()
