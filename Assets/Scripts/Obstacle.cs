@@ -21,6 +21,8 @@ public class Obstacle : MonoBehaviour
     private float iy = 0;
     //transform.position.z
     private float _startZ;
+    private float _startX;
+    private float _startY;
     private bool _isXSpecial = false;
     private bool _isYSpecial = false;
 
@@ -29,6 +31,8 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         _startZ = transform.position.z;
+        _startX = transform.position.x;
+        _startY = transform.position.y;
         _isXSpecial = Random.Range(0, 10) == 1;
         _isYSpecial = Random.Range(0, 10) == 1;
     }
@@ -44,16 +48,18 @@ public class Obstacle : MonoBehaviour
         if (_isXSpecial)
         {
             ix++;
-            x = Mathf.Sin(ix * Frequence) * Amplitude;
+            x = Mathf.Sin(Time.time * Frequence) * Amplitude;
+            transform.position = new Vector3(_startX + x, transform.position.y, transform.position.z);
             Debug.Log("X Special : " + x);
         }
         if (_isYSpecial)
         {
             iy++;
-            y = Mathf.Cos(iy * Frequence) * Amplitude;
+            y = Mathf.Cos(Time.time * Frequence) * Amplitude;
+            transform.position = new Vector3(transform.position.x, _startY + y, transform.position.z);
             Debug.Log("Y Special : " + y);
         }
-        transform.position += new Vector3(x, y, z);
+        transform.position += new Vector3(0, 0, z);
 
         if (Mathf.Abs(transform.position.z - _startZ) > DestroyDistance)
         {
