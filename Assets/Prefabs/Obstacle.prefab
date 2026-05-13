@@ -126,5 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obstacle
   Speed: 15
-  DestroyDistance: 15
+  DestroyDistance: 60
   Damages: 1
+  Amplitude: 1
+  Frequence: 1
+  ExplosionParticles: {fileID: 2037422852852178633, guid: e65be82a663649840900dce4ef3c7761, type: 3}
